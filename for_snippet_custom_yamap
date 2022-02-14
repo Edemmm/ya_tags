@@ -1,0 +1,133 @@
+add_action( 'wp_head', function () { ?>
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=3c45f4b3-2c99-474a-bfe0-637add7be7be&lang=ru_RU" type="text/javascript"></script>
+  <script>
+   ymaps.ready(init);
+  
+  var placemarks = [
+      {
+        latitude: 45.445850, 
+        longitude: 34.749499,
+        hintContent: '<div class="map__hint">пгт.Нижнегорский,ул. Лесная, д.7</div>',
+        balloonContent: ['<div class="map__balloon">',
+          '<img class="map__evim-img" src="https://evimiz.ru/wp-content/uploads/2022/02/logo.png" alt="EVIM"/>',
+          "пгт.Нижнегорский, ул. Лесная, д.7</br>Ежедневно, 9.00-18.00 </br>Телефон:  +7 (978) 716-85-00",
+          "</div>",
+        ],
+      },
+      {
+        latitude: 45.332690, 
+        longitude: 34.932491,
+        hintContent:
+          '<div class="map__hint">пгт.Советский, пер.Южный, д.13</div>',
+        balloonContent: [
+          '<div class="map__balloon">',
+          '<img class="map__evim-img" src="https://evimiz.ru/wp-content/uploads/2022/02/logo.png" alt="EVIM"/>',
+          "пгт.Советский, пер.Южный, д.13</br>Ежедневно, 9.00-18.00 </br>Телефон: +7 (978) 991-46-80",
+          "</div>",
+        ],
+      },
+      {
+        latitude: 45.048982,
+        longitude: 34.612459,
+        hintContent: '<div class="map__hint">г. Белогорск, ул. Феодосийская, 33</div>',
+        balloonContent: [
+          '<div class="map__balloon">',
+          '<img class="map__evim-img" src="https://evimiz.ru/wp-content/uploads/2022/02/logo.png" alt=""EVIM/>',
+          " г. Белогорск, ул. Феодосийская, 33 </br>Ежедневно, 9.00-18.00.</br> Телефон: +7(978)747-79-88 </div>",
+        ],
+      },
+      {
+        latitude: 45.694453,
+        longitude: 34.392827,
+        hintContent: '<div class="map__hint">г. Джанкой , ул. Джанкойская, 2а </div>',
+        balloonContent: [
+          '<div class="map__balloon">',
+          '<img class="map__evim-img" src="https://evimiz.ru/wp-content/uploads/2022/02/logo.png" alt=""EVIM/>',
+          " г. Джанкой , ул. Джанкойская, 2а </br>Ежедневно, 9.00-18.00.</br> Телефон: +7 (978) 088-57-81 </div>",
+        ],
+      }
+  ,
+  {
+        latitude: 45.488699, 
+        longitude: 34.28467,
+        hintContent: '<div class="map__hint"> пгт. Красногвардейский , пер.Дорожный, 19В</div>',
+        balloonContent: [
+          '<div class="map__balloon">',
+          '<img class="map__evim-img" src="https://evimiz.ru/wp-content/uploads/2022/02/logo.png" alt=""EVIM/>',
+          " пгт. Красногвардейский , пер.Дорожный, 19В </br>Ежедневно, 9.00-18.00.</br> Телефон: +7 (978) 740-42-70 </div>",
+        ],
+      },{
+        latitude: 45.456223,
+        longitude: 34.729811,
+        hintContent: '<div class="map__hint">пгт. Нижнегорский , ул. Победы, 108В</div>',
+        balloonContent: [
+          '<div class="map__balloon">',
+          '<img class="map__evim-img" src="https://evimiz.ru/wp-content/uploads/2022/02/logo.png" alt=""EVIM/>',
+          " пгт. Нижнегорский , ул. Победы, 108В </br>Ежедневно, 9.00-18.00.</br> Телефон: +7 (978) 098-70-17 </div>",
+        ],
+      },
+  {
+        latitude: 45.727665,
+        longitude: 33.846480,
+        hintContent: '<div class="map__hint">пгт. Первомайский , ул. Октябрьская 140</div>',
+        balloonContent: ['<div class="map__balloon">',
+         
+          '<img class="map__evim-img" src="https://evimiz.ru/wp-content/uploads/2022/02/logo.png" alt=""EVIM/>',
+          " пгт. Первомайский , ул. Октябрьская 140 </br>Ежедневно, 9.00-18.00.</br> Телефон: +7 (978) 137-11-76</div>",
+        ],
+      }
+  ],
+    geoObjects = [];
+  
+  function init() {
+    var map = new ymaps.Map("map", {
+      center: [44.940321427317656, 34.143150799549225],
+      zoom: 8,
+    });
+  
+     for (var i = 0; i < placemarks.length; i++) {
+      geoObjects[i] = new ymaps.Placemark(
+        [placemarks[i].latitude, placemarks[i].longitude],
+        {
+          hintContent: placemarks[i].hintContent,
+          balloonContent: placemarks[i].balloonContent.join(""),
+        },
+        {
+          iconLayout: "default#image",
+          iconImageHref: "https://evimiz.ru/wp-content/uploads/2022/02/logo.png",
+          iconImageSize: [40, 40],
+        }
+      );
+    };
+  var mtk = new ymaps.Placemark([45.434357, 34.735148], {
+	  hintContent: '<div class="map__hint">пгт. Нижнегорский, пер.Гаражный, 3</div>',
+      balloonContent: ['<div class="map__balloon">',
+          " Все для кровли, металлопрокат, стройматериалы</br><b>ООО Метаком, пгт. Нижнегорский, пер.Гаражный, 3 </b></br>Ежедневно, 8.30-17.00.</br> Отдел продаж: замер и расчет бесплатно</br> <a href=tel:+79789930050>+7(978) 993-00-50</a> <a href=tel:+79789930050>+7(978) 604-20-01</a></br> <a href=tel:+79789930050>+7(978) 862-46-08</a> <a href=tel:+79789930050>+7(978) 030-08-35 </a></div>",
+        ].join("")},
+  {
+          iconLayout: "default#image",
+          iconImageHref: "https://evimiz.ru/wp-content/uploads/2022/02/metakom_logo.png",
+          iconImageSize: [35, 35]
+        });
+	 map.geoObjects.add(mtk);
+  
+    var clusterer = new ymaps.Clusterer({
+      clusterIcons: [
+        {
+          href: "https://evimiz.ru/wp-content/uploads/2022/02/logo.png",
+          size: [50, 50],
+          offset: [0, 0],
+        },
+      ],
+      clusterIconContentLayout: null,
+    });
+  
+    map.geoObjects.add(clusterer);
+	
+    clusterer.add(geoObjects);
+	
+  }
+  
+
+  </script>
+  <?php } );
